@@ -137,75 +137,15 @@ public class Player
 		{
 		case 'N':
 			for (int i = yCoord; i > yCoord - size; i--)
-			{
+			{	
 				if (i < 0)
 				{
 					placed = false;
 				}
-				
-				Square square = oceanMatrix[xCoord][i];
-				
-				if (square.isOccupied())
-				{
-					placed = false;
-				}
 				else
 				{
-					square.setOccupyingShip(ship);
-				}
-			}
-			break;
-		case 'S':
-			for (int i = yCoord; i < yCoord + size; i++)
-			{
-				if(i > oceanMatrix.length)
-				{
-					placed = false;
-				}
-				
-				Square square = oceanMatrix[xCoord][i];
-				
-				if (square.isOccupied())
-				{
-					placed = false;
-				}
-				else
-				{
-					square.setOccupyingShip(ship);
-				}
-			}
-			break;
-		case 'E':
-			for (int i = xCoord; i < xCoord + size; i++)
-			{
-				if(i > oceanMatrix[0].length)
-				{
-					placed = false;
-				}
-				
-				Square square = oceanMatrix[i][yCoord];
-				
-				if (square.isOccupied())
-				{
-					placed = false;
-				}
-				else
-				{
-					square.setOccupyingShip(ship);
-				}
-			}
-			break;
-		case 'W':
-			for (int i = xCoord; i > xCoord - size; i--)
-			{
-				if(i < 0)
-				{
-					placed = false;
-				}
-				
-				if (placed != false)
-				{
-					Square square = oceanMatrix[i][yCoord];				
+					Square square = oceanMatrix[xCoord][i];
+					
 					if (square.isOccupied())
 					{
 						placed = false;
@@ -215,11 +155,109 @@ public class Player
 						square.setOccupyingShip(ship);
 					}
 				}
+				
+				if (placed == false)
+				{
+					for (int j = i + 1; j <= yCoord; j++)
+					{
+						Square square = oceanMatrix[xCoord][j];
+						square.clearOccupyingShip();
+					}
+					break;
+				}
+			}
+			break;
+		case 'S':
+			for (int i = yCoord; i < yCoord + size; i++)
+			{		
+				if(i >= oceanMatrix.length)
+				{
+					placed = false;
+				}
 				else
 				{
-					for (int j = i; j <= xCoord; j++)
+					Square square = oceanMatrix[xCoord][i];
+					
+					if (square.isOccupied())
 					{
-						Square square = oceanMatrix[i][yCoord];
+						placed = false;
+					}
+					else
+					{
+						square.setOccupyingShip(ship);
+					}
+				}
+				
+				if (placed == false)
+				{
+					for (int j = i - 1; j >= yCoord; j--)
+					{
+						Square square = oceanMatrix[xCoord][j];
+						square.clearOccupyingShip();
+					}
+					break;
+				}
+			}
+			break;
+		case 'E':
+			for (int i = xCoord; i < xCoord + size; i++)
+			{
+				
+				if(i >= oceanMatrix[0].length)
+				{
+					placed = false;
+				}
+				else
+				{				
+					Square square = oceanMatrix[i][yCoord];		
+					
+					if (square.isOccupied())
+					{
+						placed = false;
+					}
+					else
+					{
+						square.setOccupyingShip(ship);
+					}
+				}
+				
+				if (placed == false)
+				{
+					for (int j = i - 1; j >= xCoord; j--)
+					{
+						Square square = oceanMatrix[j][yCoord];
+						square.clearOccupyingShip();
+					}
+					break;
+				}
+			}
+			break;
+		case 'W':
+			for (int i = xCoord; i > xCoord - size; i--)
+			{			
+				if(i < 0)
+				{
+					placed = false;
+				}
+				else
+				{
+					Square square = oceanMatrix[i][yCoord];
+					
+					if (square.isOccupied())
+					{
+						placed = false;	
+					}
+					else
+					{
+						square.setOccupyingShip(ship);
+					}
+				}
+				
+				if (placed == false)
+				{
+					for (int j = i + 1; j <= xCoord; j++)
+					{
+						Square square = oceanMatrix[j][yCoord];
 						square.clearOccupyingShip();
 					}
 					break;
