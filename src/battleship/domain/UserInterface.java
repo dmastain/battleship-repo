@@ -154,9 +154,21 @@ public class UserInterface
 		
 		int numRow = charToInt(row);
 		
-		StdOut.print("Select Column (1-10):");
+		if (numRow == -1)
+		{
+			StdOut.println("Invalid Coordinates, please try again!");
+			return promptCoords();
+		}
+		
+		StdOut.println("Select Column (1-10):");
 		
 		int column = StdIn.readInt();
+		
+		if (column == -1)
+		{
+			StdOut.print("Invalid Coordinates, please try again!");
+			return promptCoords();
+		}
 		
 		column -= 1;
 		
@@ -172,6 +184,8 @@ public class UserInterface
 		String orient = StdIn.readString();
 	
 		char o = orient.charAt(0);
+		
+		o = Character.toUpperCase(o);
 		
 		return o;
 	}
@@ -200,6 +214,7 @@ public class UserInterface
 	private int charToInt(String character)
 	{
 		char c = character.charAt(0);
+		c = Character.toUpperCase(c);
 		
 		for (int i=0; i < yAxisList.length; i++)
 		{
