@@ -7,7 +7,7 @@ public class Destroyer extends Ship
 	
 	public Destroyer()
 	{
-		super();
+		super(destroyerSize);
 	}
 	
 	public Destroyer(char orientation, int xCoord, int yCoord) 

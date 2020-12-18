@@ -7,7 +7,7 @@ public class Cruiser extends Ship
 
 	public Cruiser()
 	{
-		super();
+		super(cruiserSize);
 	}
 	
 	public Cruiser(char orientation, int xCoord, int yCoord) 

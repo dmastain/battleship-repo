@@ -7,7 +7,7 @@ public class Battleship extends Ship
 
 	public Battleship()
 	{
-		super();
+		super(battleshipSize);
 	}
 			
 	public Battleship(char orientation, int xCoord, int yCoord) 

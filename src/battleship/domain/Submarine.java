@@ -7,7 +7,7 @@ public class Submarine extends Ship
 	
 	public Submarine()
 	{
-		super();
+		super(subSize);
 	}
 
 	public Submarine(char orientation, int column, int row) 

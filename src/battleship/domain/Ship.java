@@ -12,9 +12,10 @@ public class Ship
 	private boolean destroyed;
 	private String type = "Generic ship";
 	
-	public Ship()
+	public Ship(int size)
 	{
 		this.destroyed = false;
+		this.size = size;
 	}
 	
 	public Ship(char orientation, int size, int xCoord, int yCoord) 

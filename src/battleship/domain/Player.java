@@ -78,7 +78,7 @@ public class Player
 		{
 			numDestroyed++;
 		}
-		else if (carrier.isDestroyed() == true)
+		if (carrier.isDestroyed() == true)
 		{
 			numDestroyed++;
 		}

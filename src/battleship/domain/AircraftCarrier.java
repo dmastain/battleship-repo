@@ -7,7 +7,7 @@ public class AircraftCarrier extends Ship
 	
 	public AircraftCarrier()
 	{
-		super();
+		super(aircraftCarrierSize);
 	}
 
 	public AircraftCarrier(char orientation, int xCoord, int yCoord) 
