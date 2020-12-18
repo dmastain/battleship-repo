@@ -113,7 +113,7 @@ public class Player
 			this.battleship.setStartSquare(xCoord, yCoord);
 			unoccupied = placeShip(this.battleship);
 		    break;
-		  case "AircraftCarrier":
+		  case "Aircraft Carrier":
 			this.carrier.setOrientation(orientation);
 			this.carrier.setStartSquare(xCoord, yCoord);
 			unoccupied = placeShip(this.carrier);

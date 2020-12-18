@@ -3,7 +3,7 @@ package battleship.domain;
 public class AircraftCarrier extends Ship
 {
 	private static int aircraftCarrierSize = 5;
-	private String type = "AircraftCarrier";
+	private String type = "Aircraft Carrier";
 	
 	public AircraftCarrier()
 	{

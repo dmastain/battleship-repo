@@ -101,4 +101,103 @@ class TestShip {
 		assertEquals(ship.getStartSquare()[1], yCoord);
 		assertEquals(ship.getType(), type);
 	}
+	
+	@Test
+	void test_ship_size()
+	{
+		char orientation = 'E';
+		int size = 1;
+		int xCoord = 0;
+		int yCoord = 0;
+		
+		Ship ship = new Ship(orientation, size, xCoord, yCoord);
+		assertEquals(ship.getSize(), size);
+		size = 5;
+		ship.setSize(size);
+		assertEquals(ship.getSize(),size);
+		
+		size = 3;
+		ship.setSize(size);
+		assertEquals(ship.getSize(),size);
+	}
+	
+	@Test
+	void test_ship_hits_not_destroyed()
+	{
+		char orientation = 'E';
+		int size = 5;
+		int xCoord = 0;
+		int yCoord = 0;
+		
+		Ship ship = new Ship(orientation, size, xCoord, yCoord);
+		
+		ship.addHits(1);
+		ship.addHits(1);
+		
+		assertEquals(ship.getHits(),2);
+		assertEquals(ship.isDestroyed(), false);
+	}
+	
+	@Test
+	void test_ship_hits_destroyed()
+	{
+		char orientation = 'E';
+		int size = 2;
+		int xCoord = 0;
+		int yCoord = 0;
+		
+		Ship ship = new Ship(orientation, size, xCoord, yCoord);
+		
+		ship.addHits(1);
+		ship.addHits(1);
+		
+		assertEquals(ship.getHits(),2);
+		assertEquals(ship.isDestroyed(), true);
+	}
+	
+	@Test
+	void test_ship_start_square_null()
+	{
+		char orientation = 'E';
+		int size = 2;
+		int xCoord = 0;
+		int yCoord = 0;
+		
+		Ship ship = new Ship(orientation, size, xCoord, yCoord);
+		
+		ship.nullStart();
+		assertEquals(ship.getStartSquare(), null);
+		
+		ship.setStartSquare(xCoord, yCoord);
+		assertEquals(ship.getStartSquare()[0], xCoord);
+		assertEquals(ship.getStartSquare()[1], yCoord);
+	}
+	
+	@Test
+	void test_ship_set_start_square()
+	{
+		char orientation = 'E';
+		int size = 2;
+		int xCoord = 0;
+		int yCoord = 0;
+		
+		Ship ship = new Ship(orientation, size, xCoord, yCoord);
+		
+		ship.nullStart();
+		assertEquals(ship.getStartSquare(), null);
+		
+		xCoord = 10;
+		yCoord = 10;
+		
+		ship.setStartSquare(xCoord, yCoord);
+		assertEquals(ship.getStartSquare()[0], xCoord);
+		assertEquals(ship.getStartSquare()[1], yCoord);
+		
+		xCoord = 3;
+		yCoord = 7;
+		
+		ship.setStartSquare(xCoord, yCoord);
+		assertEquals(ship.getStartSquare()[0], xCoord);
+		assertEquals(ship.getStartSquare()[1], yCoord);
+	}
 }

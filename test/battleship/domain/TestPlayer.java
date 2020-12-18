@@ -43,7 +43,7 @@ class TestPlayer {
 		Ship ship5 = player.nextShip();
 		player.addShip(ship5, orientation, xCoord, ++yCoord);
 		
-		assertEquals(ship5.getType(),"AircraftCarrier");
+		assertEquals(ship5.getType(),"Aircraft Carrier");
 		assertEquals(ship5.getStartSquare()[0],xCoord);
 		assertEquals(ship5.getStartSquare()[1],yCoord);
 		
