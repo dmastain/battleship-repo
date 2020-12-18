@@ -176,6 +176,27 @@ public class UserInterface
 		return o;
 	}
 	
+	public void promptEndTurn() 
+	{
+		StdOut.println("Ready to end turn? (Y/N):");
+		
+		String end = StdIn.readString();
+		
+		if (end.equalsIgnoreCase("Y") || end.equalsIgnoreCase("Yes")) 
+		{
+			return;
+		}
+		else if(end.equalsIgnoreCase("N") || end.equalsIgnoreCase("No"))
+		{
+			promptEndTurn();
+		}
+		else
+		{
+			StdOut.println("Invalid response");
+			promptEndTurn();
+		}
+	}
+	
 	private int charToInt(String character)
 	{
 		char c = character.charAt(0);
@@ -188,6 +209,11 @@ public class UserInterface
 			}
 		}
 		return -1;
+	}
+	
+	public void printDestoryedShips(int destoryedCount)
+	{
+		StdOut.println("Ships destoryed: " + destoryedCount);
 	}
 	
 	public void printGameOver(String name)

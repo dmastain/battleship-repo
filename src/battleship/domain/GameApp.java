@@ -83,7 +83,6 @@ public class GameApp
 				if (player == player1)
 				{
 			        opponentOcean = player2.getOceanMatrix();
-					ui.drawOpponentOcean(player2.getOceanMatrix());
 				}
 				else
 				{
@@ -95,15 +94,21 @@ public class GameApp
 				
 				Square fireSquare = opponentOcean[coords[1]][coords[0]];
 				boolean hitShip = fireSquare.setHit(true);
-				ui.fireResult(hitShip);
 				ui.drawOpponentOcean(opponentOcean);
 				
-				if (player.countDestroyedShips() == 5)
+				ui.fireResult(hitShip);
+				int destroyed = player.countDestroyedShips();
+				ui.printDestoryedShips(destroyed);
+				
+				if ( destroyed == 5)
 				{
 					ui.printGameOver(name);
 					gameOver = true;
 					break;
 				}
+				
+				ui.promptEndTurn();
+				ui.clearConsole();
 			}
 			
 			if (gameOver == true)
