@@ -160,13 +160,13 @@ public class UserInterface
 			return promptCoords();
 		}
 		
-		StdOut.println("Select Column (1-10):");
+		StdOut.print("Select Column (1-10):");
 		
 		int column = StdIn.readInt();
 		
 		if (column == -1)
 		{
-			StdOut.print("Invalid Coordinates, please try again!");
+			StdOut.println("Invalid Coordinates, please try again!");
 			return promptCoords();
 		}
 		
@@ -243,6 +243,8 @@ public class UserInterface
 	
 	public void printInvalid()
 	{
+		StdOut.println("----------------------------------");
 		StdOut.println("Invalid placement please try again");
+		StdOut.println("----------------------------------");
 	}
 }

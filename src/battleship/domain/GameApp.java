@@ -5,73 +5,59 @@ import java.util.ArrayList;
 import edu.princeton.cs.introcs.StdOut;
 
 public class GameApp 
-{
-	
-	private static boolean placeNextShip(Player player, UserInterface ui)
-	{
-		Ship nextShip = player.nextShip();
-		
-		if (nextShip == null)
-		{
-			return true;
-		}
-		
-		int[] coords = ui.promptPlaceShip(nextShip);
-		char orientation = ui.promptPlaceShipOrientation();
-		
-		boolean unoccupied = player.addShip(nextShip, orientation, coords[1], coords[0]);
-		
-		if(unoccupied == false)
-		{
-			nextShip.nullStart();
-			ui.printInvalid();
-			return placeNextShip(player, ui);
-		}
-		
-		return false;
-	}
-	
+{	
 	public static void main(String[] args)
 	{
-		ArrayList<Player> playerList = new ArrayList<Player>(2);
+		int numPlayers = 2;
+		int numShips = 5;
 		
 		UserInterface ui = new UserInterface();
 		String player1Name = ui.promptPlayerName(1);
 		String player2Name = ui.promptPlayerName(2);
 		
-		Player player1 = new Player(player1Name);
-		playerList.add(player1);
-		Player player2 = new Player(player2Name);
-		playerList.add(player2);
-	
-		Ship nextShip = null;
+		Controller controller = new Controller(player1Name, player2Name);
 		
-		for (Player player: playerList)
+		for (int p = 0; p < numPlayers; p++)
 		{
+			Player player = controller.getCurrentPlayer();
+			
 			ui.printTurn(player.getName());
-			ui.drawPlayerOcean(player.getOceanMatrix());
-			while(true) 
+			
+			int placedShips = 0;
+			
+			while(placedShips < numShips)
 			{
-				boolean end = placeNextShip(player, ui);
+				ui.drawPlayerOcean(player.getOceanMatrix());
 				
-				if (end == true)
+				int[] coords = ui.promptPlaceShip(player.nextShip());
+				char orientation = ui.promptPlaceShipOrientation();
+				
+				boolean placed = controller.placeNextShip(coords, orientation);
+				
+				if (placed == true)
 				{
-					break;
+					placedShips++;
 				}
-				
-				ui.drawPlayerOcean(player.getOceanMatrix());	
+				else
+				{
+					ui.printInvalid();
+				}
 			}
+			controller.nextPlayer();
 			ui.clearConsole();
 		}
+			
 		
 		while(true)
 		{
 			boolean gameOver = false;
 			
-			for (Player player: playerList)
+			while(true)
 			{
-				Square[][] opponentOcean;
+				Player player = controller.getCurrentPlayer();
+				Player opponent = controller.getOpposingPlayer();
 				String name = player.getName();
+				
 				ui.printTurn(name);
 				boolean drawOcean = ui.promptDraw(name);
 				
@@ -80,23 +66,16 @@ public class GameApp
 					ui.drawPlayerOcean(player.getOceanMatrix());
 				}
 				
-				if (player == player1)
-				{
-			        opponentOcean = player2.getOceanMatrix();
-				}
-				else
-				{
-					opponentOcean = player1.getOceanMatrix();
-				}
+				ui.drawOpponentOcean(opponent.getOceanMatrix());
 				
-				ui.drawOpponentOcean(opponentOcean);
 				int[] coords = ui.promptFire(name);
 				
-				Square fireSquare = opponentOcean[coords[1]][coords[0]];
+				Square fireSquare = opponent.getOceanMatrix()[coords[1]][coords[0]];
 				boolean hitShip = fireSquare.setHit(true);
-				ui.drawOpponentOcean(opponentOcean);
+				ui.drawOpponentOcean(opponent.getOceanMatrix());
 				
 				ui.fireResult(hitShip);
+				
 				int destroyed = player.countDestroyedShips();
 				ui.printDestoryedShips(destroyed);
 				
