@@ -43,6 +43,8 @@ public class GameApp
 					ui.printInvalid();
 				}
 			}
+			ui.drawPlayerOcean(player.getOceanMatrix());
+			ui.promptEndTurn();
 			controller.nextPlayer();
 			ui.clearConsole();
 		}

@@ -192,7 +192,7 @@ public class UserInterface
 	
 	public void promptEndTurn() 
 	{
-		StdOut.println("Ready to end turn? (Y/N):");
+		StdOut.print("Ready to end turn? (Y/N):");
 		
 		String end = StdIn.readString();
 		
