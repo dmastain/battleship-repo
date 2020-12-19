@@ -1,0 +1,1 @@
+To run the game simply run the GampeApp java class which contains a main method, the program should take care of the rest.
