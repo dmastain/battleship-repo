@@ -1,1 +1,8 @@
-To run the game simply run the GampeApp java class which contains a main method, the program should take care of the rest.
+To run the game simply run the GampeApp java class which contains a main method, 
+the program will prompt you for two player names and then begin placing ships
+for each of them. After ships are placed the game will enter the firing stage 
+and continue until all 5 of one player's ships have been sunk.
+
+	Suggestions:
+		-- While the program does it's best to bounds check prompts it is suggested 
+		   you conform to the style requested.
