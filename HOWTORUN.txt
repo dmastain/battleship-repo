@@ -6,3 +6,6 @@ and continue until all 5 of one player's ships have been sunk.
 	Suggestions:
 		-- While the program does it's best to bounds check prompts it is suggested 
 		   you conform to the style requested.
+		   
+To run tests, make sure JUnit 5 is a part of the build path and use the built in
+Eclipse test runner.
