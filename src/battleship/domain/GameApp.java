@@ -89,6 +89,7 @@ public class GameApp
 				}
 				
 				ui.promptEndTurn();
+				controller.nextPlayer();
 				ui.clearConsole();
 			}
 			
